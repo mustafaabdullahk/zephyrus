@@ -4,10 +4,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#ifdef __ZEPHYR__
+
+#include <zephyr/posix/unistd.h>
+#include <zephyr/posix/sys/socket.h>
+#include <zephyr/posix/netinet/in.h>
+#include <zephyr/posix/arpa/inet.h>
+
+#else
+
 #include <unistd.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+
+#endif
 
 #define BUFFER_SIZE 2048
 
