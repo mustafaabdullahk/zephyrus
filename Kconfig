@@ -1,0 +1,14 @@
+menu "prometheus client library support"
+
+config PROMETHEUS
+	bool "mongoose web library"
+
+if PROMETHEUS
+
+config PROMETHEUS_VERBOSE
+	bool "Make zcbor code print messages"
+	default n
+
+endif #PROMETHEUS
+
+endmenu
