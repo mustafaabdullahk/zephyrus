@@ -9,6 +9,10 @@ config PROMETHEUS_VERBOSE
 	bool "Make zcbor code print messages"
 	default n
 
+config PROMETHEUS_BUILD_TESTS
+	bool "make promethus build test"
+	default n
+
 endif #PROMETHEUS
 
 endmenu
