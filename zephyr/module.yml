@@ -1,0 +1,4 @@
+name: prometheus
+build:
+  cmake: .
+  kconfig: Kconfig
