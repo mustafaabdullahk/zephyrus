@@ -175,6 +175,6 @@ void pm_format_exposition(const pm_collector_t *collector, char *buffer, size_t 
 			break;
 		}
 		// Move to the next metric in the collector
-		current = current->next;
+		current = (struct pm_collector_node_t *) current->next;
 	}
 }
