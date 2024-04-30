@@ -1,6 +1,7 @@
 #include "prometheus/pm_gauge.h"
 
 #include <stdlib.h>
+#include <string.h>
 
 pm_gauge_t *pm_gauge_create(const char *name, const char *desc, pm_label_t *labels, int num_labels)
 {
