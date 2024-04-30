@@ -30,6 +30,9 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
     add_subdirectory(tests)
 
 else()
+    # This policy is needed to override options with variables
+    #cmake_policy(SET CMP0077 NEW)
+
     add_compile_definitions(__ZEPHYR__)
 
     add_definitions(-DZEPHYR_VERSION=${KERNEL_VERSION_STRING})
