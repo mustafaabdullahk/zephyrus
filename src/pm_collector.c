@@ -80,7 +80,7 @@ const pm_metric_t *pm_collector_get_metric(const pm_collector_t *collector, cons
 		if (strcmp(current->metric->name, name) == 0) {
 			return current->metric;
 		}
-		current = (struct pm_collector_node_t *) current->next;
+		current = (pm_collector_node_t *) current->next;
 	}
 	return NULL; // Metric not found
 }
@@ -90,7 +90,7 @@ void pm_collector_destroy(pm_collector_t *collector)
 	// Free memory for each node and its metric
 	pm_collector_node_t *current = collector->head;
 	while (current != NULL) {
-		pm_collector_node_t *next = (struct pm_collector_node_t *) current->next;
+		pm_collector_node_t *next = (pm_collector_node_t *) current->next;
 		free(current->metric); // Free metric-specific memory
 		free(current);         // Free node
 		current = next;
