@@ -16,7 +16,7 @@ typedef struct {
 } pm_collector_t;
 
 pm_collector_t *pm_collector_create();
-void pm_collector_register_metric(pm_collector_t *collector, const pm_metric_t *metric);
+void pm_collector_register_metric(pm_collector_t *collector, pm_metric_t *metric);
 const pm_metric_t *pm_collector_get_metric(const pm_collector_t *collector, const char *name);
 void pm_collector_destroy(pm_collector_t *collector);
 

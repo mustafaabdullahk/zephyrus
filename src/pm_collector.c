@@ -22,7 +22,7 @@ pm_collector_t *pm_collector_create()
 	return collector;
 }
 
-void pm_collector_register_metric(pm_collector_t *collector, const pm_metric_t *metric)
+void pm_collector_register_metric(pm_collector_t *collector, pm_metric_t *metric)
 {
 	// Allocate memory for the new node
 	pm_collector_node_t *node = (pm_collector_node_t *)malloc(sizeof(pm_collector_node_t));
@@ -35,7 +35,7 @@ void pm_collector_register_metric(pm_collector_t *collector, const pm_metric_t *
 	case PM_COUNTER:
 		node->metric = (pm_metric_t *)malloc(sizeof(pm_counter_t));
 		if (node->metric != NULL) {
-			memcpy(node->metric, metric, sizeof(pm_counter_t));
+			node->metric = metric;
 		}
 		break;
 	case PM_GAUGE:
@@ -67,7 +67,7 @@ void pm_collector_register_metric(pm_collector_t *collector, const pm_metric_t *
 	}
 
 	// Insert the new node at the beginning of the list
-	node->next = collector->head;
+	node->next = (struct pm_collector_node *) collector->head;
 	collector->head = node;
 	collector->size++;
 }
@@ -80,7 +80,7 @@ const pm_metric_t *pm_collector_get_metric(const pm_collector_t *collector, cons
 		if (strcmp(current->metric->name, name) == 0) {
 			return current->metric;
 		}
-		current = current->next;
+		current = (struct pm_collector_node_t *) current->next;
 	}
 	return NULL; // Metric not found
 }
@@ -90,7 +90,7 @@ void pm_collector_destroy(pm_collector_t *collector)
 	// Free memory for each node and its metric
 	pm_collector_node_t *current = collector->head;
 	while (current != NULL) {
-		pm_collector_node_t *next = current->next;
+		pm_collector_node_t *next = (struct pm_collector_node_t *) current->next;
 		free(current->metric); // Free metric-specific memory
 		free(current);         // Free node
 		current = next;
