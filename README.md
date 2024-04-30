@@ -131,6 +131,21 @@ CONFIG_COMMON_LIBC_MALLOC_ARENA_SIZE=8194
 #include <prometheus/counter.h>
 ```
 
+## Zephyr Example Application
+
+[Zephyr Prometheus Example Application](https://github.com/mustafaabdullahk/zephyr-prometheus-example)
+
+```bash
+# initialize my-workspace for the example-application (main branch)
+west init -m https://github.com/mustafaabdullahk/zephyr-prometheus-example.git --mr main prom-workspace
+# update Zephyr modules
+cd my-workspace
+west update
+# build for stm32h747disco
+west build -b stm32h747i_disco/stm32h747xx/m7 app/ -p
+```
+
+
 ## Features
 - Lightweight and efficient C library for instrumenting C-based applications.
 - Supports various types of metrics, including counters, gauges, histograms, and summaries.
