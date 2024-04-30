@@ -84,8 +84,8 @@ I suggest to read following zephyr issues:
           - hal_stm32  # required by the nucleo_f302r8 board (STM32 based)
           - mbedtls
 
-    - name: zephyrus
-      remote: mustafaabdullahk # referred from remotes can change other forks or main
+    - name: prometheus
+      remote: zephyrus # referred from remotes can change other forks or main
       submodules: true # prometheus add as submodule
       revision: main # can select different branch
       repo-path: .
@@ -98,10 +98,11 @@ I suggest to read following zephyr issues:
 
 ```
 CONFIG_PROMETHEUS=y
+CONFIG_POSIX_API=y
 
 CONFIG_NETWORKING=y
 CONFIG_NET_IPV4=y
-CONFIG_NET_IPV6=y
+CONFIG_NET_IPV6=n
 CONFIG_NET_TCP=y
 CONFIG_NET_UDP=y
 CONFIG_NET_DHCPV4=y
@@ -113,21 +114,21 @@ CONFIG_NET_MAX_CONTEXTS=10
 CONFIG_NET_CONFIG_SETTINGS=y
 CONFIG_NET_CONNECTION_MANAGER=y
 CONFIG_NET_LOG=y
+CONFIG_INIT_STACKS=y
 
 CONFIG_LOG=y
 CONFIG_ISR_STACK_SIZE=2048
 CONFIG_MAIN_STACK_SIZE=8192
 CONFIG_IDLE_STACK_SIZE=1024
 
-CONFIG_MINIMAL_LIBC=y
-CONFIG_MINIMAL_LIBC_RAND=y
-CONFIG_MINIMAL_LIBC_MALLOC_ARENA_SIZE=32768
+CONFIG_REQUIRES_FULL_LIBC=y
+CONFIG_COMMON_LIBC_MALLOC_ARENA_SIZE=8194
 ```
 
 - add library and ready to start coding:
 
 ```c
-#include <mongoose.h>
+#include <prometheus/counter.h>
 ```
 
 ## Features
